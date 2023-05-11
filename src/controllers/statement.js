@@ -1,4 +1,4 @@
-const BankStatementController = { }
+const BankStatementController = {}
 
 BankStatementController.getAll = async () => {
     // mongoose get request
