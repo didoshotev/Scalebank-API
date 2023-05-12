@@ -1,5 +1,5 @@
-const BankStatementController = require('../controller/statement');
+const BankStatementController = require('../controller/statement')
 
-const router = require('express').Router();
+const router = require('express').Router()
 
-router.get('/statements', BankStatementController.getAll);
+router.get('/statements', BankStatementController.getAll)
