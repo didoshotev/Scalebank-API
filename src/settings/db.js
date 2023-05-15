@@ -2,7 +2,7 @@ require('dotenv').config()
 const { default: mongoose } = require('mongoose')
 const { DB_NAME } = require('./constants')
 
-const uri = `mongodb+srv://Initial-user-1:${process.env.MONGO_DB_PWD}@initial-cluster.glcvfwx.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`
+const uri = `mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PWD}@initial-cluster.glcvfwx.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`
 
 async function connectToMongo() {
     try {
