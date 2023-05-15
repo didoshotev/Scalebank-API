@@ -1,24 +1,20 @@
 require('dotenv').config()
-const { MongoClient, ServerApiVersion } = require('mongodb')
+const { default: mongoose } = require('mongoose')
+const { DB_NAME } = require('./constants')
 
-const uri = `mongodb+srv://Initial-user-1:${process.env.MONGO_DB_PWD}@initial-cluster.glcvfwx.mongodb.net/?retryWrites=true&w=majority`
-
-const client = new MongoClient(uri, {
-    serverApi: {
-        version: ServerApiVersion.v1,
-        strict: true,
-        deprecationErrors: true,
-    },
-})
+const uri = `mongodb+srv://Initial-user-1:${process.env.MONGO_DB_PWD}@initial-cluster.glcvfwx.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`
 
 async function connectToMongo() {
     try {
-        await client.connect()
-        await client.db('admin').command({ ping: 1 })
+        await mongoose.connect(uri, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            dbName: DB_NAME,
+        })
         console.log(
-            'Pinged your deployment. You successfully connected to MongoDB!'
+            `Pinged your deployment. You successfully connected to ${mongoose.connection.name}`
         )
-        return client
+        return true
     } catch (err) {
         console.log(err)
     }
@@ -26,5 +22,4 @@ async function connectToMongo() {
 
 module.exports = {
     connectToMongo,
-    mongoInstance: client,
 }
