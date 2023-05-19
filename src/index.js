@@ -7,11 +7,13 @@ const app = express()
 const PORT = process.env.PORT || 8080
 
 const statementRoutes = require('./routes/statement')
+const userRoutes = require('./routes/user')
 const { setCORSHeaders } = require('./utils')
 
 app.use(setCORSHeaders)
 app.use(express.json())
 app.use(statementRoutes)
+app.use(userRoutes)
 
 async function startServer() {
     try {
